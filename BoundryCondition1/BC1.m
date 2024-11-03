@@ -22,6 +22,12 @@ xlabel('Cylinder Rotation Speed')
 
 wr = w.*(1+((Ro.^2*Ri.^2)./(Ro.^2 - Ri.^2)) .* ((1./r.^2) - (1./Ri.^2)));
 wr2 = ((Ri.^2 * w)/(Ri.^2 - Ro.^2)) * (1 - ((Ro./r).^2));
+
+
+VTheta3 = - ((w.*r) ./ ((Ro.^2./Ri.^2)-1)) + (w ./ (r.*((1/Ri.^2)-(1/Ro.^2))));
+
+
+
 figure(2)
 plot(wr2,r/Ri)
 hold on
@@ -30,3 +36,9 @@ xlabel('Cylinder Rotation Speed')
 plot(wr,r/Ri)
 plot(UTheta,r/Ri)
 plot(VTheta2./r,r/Ri)
+
+figure(3)
+plot(VTheta3,r/Ri)
+hold on
+ylabel('normalised Radius')
+xlabel('Cylinder Rotation Speed')
