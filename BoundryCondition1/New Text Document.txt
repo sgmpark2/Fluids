@@ -1,0 +1,67 @@
+% ---------------------------- Input/Output files ------------------------------
+% Mesh file
+MESH_FILENAME= mesh.su2
+
+% Output file names
+CONV_FILENAME= history
+OUTPUT_WRT_FREQ= 10
+TABULAR_FORMAT= CSV
+VOLUME_FILENAME= flow
+
+% ---------------------------- Physical properties ----------------------------
+% Set physical properties for air as an ideal gas.
+PHYSICAL_PROBLEM= NAVIER_STOKES
+MACH_NUMBER= 0.3
+REYNOLDS_NUMBER= 1e6
+REYNOLDS_LENGTH= 1.0
+GAMMA_VALUE= 1.4
+GAS_CONSTANT= 287.05
+TEMPERATURE_SEA_LEVEL= 288.15
+PRESSURE_SEA_LEVEL= 101325.0
+
+% ---------------------------- Moving Wall Setup ------------------------------
+% For inner wall rotation
+MARKER_MOVING= ( inner_wall, ROTATION, 0.0, 0.0, 1.0, 100.0 )
+
+% Explanation of parameters in MARKER_MOVING:
+% ( boundary_name, ROTATION, x_coord, y_coord, z_coord, angular_velocity )
+% - `inner_wall`: Name of the inner wall boundary in the mesh.
+% - `ROTATION`: Type of motion (in this case, rotation).
+% - `x_coord, y_coord, z_coord`: Axis of rotation (assumed z-axis here).
+% - `angular_velocity`: Angular velocity in degrees per second (or rad/s depending on the setup).
+
+% Set stationary outer wall
+MARKER_ISOTHERMAL= ( outer_wall, 300.0 )  % Example of an isothermal wall
+% Alternatively, if not isothermal:
+MARKER_HEAT_FLUX= ( outer_wall, 0.0 )
+
+% ---------------------------- Boundary Conditions ----------------------------
+% Boundary conditions for inlet and outlet (adapt as needed)
+MARKER_INLET= ( inlet, 101325.0, 300.0 )
+MARKER_OUTLET= ( outlet, 101325.0 )
+
+% ---------------------------- Numerical Methods ------------------------------
+% Solver setup for Navier-Stokes
+NUM_METHOD_GRAD= GREEN_GAUSS
+CFL_NUMBER= 5.0
+CONV_NUM_METHOD_FLOW= JST
+MUSCL_FLOW= YES
+SLOPE_LIMITER_FLOW= VENKATAKRISHNAN
+TIME_DISCRE_FLOW= EULER_IMPLICIT
+LINEAR_SOLVER= FGMRES
+LINEAR_SOLVER_PREC= ILU
+LINEAR_SOLVER_ITER= 5
+TIME_ITER= 10000
+EXT_ITER= 10000
+CONV_RESIDUAL_MINVAL= -8
+
+% ---------------------------- Time step and iterations -----------------------
+% Time step and simulation time settings
+UNST_TIMESTEP= 0.001
+UNST_TIME= YES
+TIME_ITER= 5000
+
+% ---------------------------- Post-processing ------------------------------
+% Outputs for visualization
+OUTPUT_FILES= ( PARAVIEW, SU2 )
+VOLUME_OUTPUT= ( PRESSURE, MACH, VELOCITY, TEMPERATURE )
