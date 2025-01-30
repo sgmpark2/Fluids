@@ -27,10 +27,10 @@ ylabel('Normalised Radius')
 xlabel('Flow Velocity Magnitude')
 
 hold on
-plot(VM,r/Ri)
-plot(VM_SU2,r/Ri)
+plot(VM,r/Ri,"r",LineWidth=1.5)
+%plot(VM_SU2,r/Ri,"b--",LineWidth=1.5)
 grid on
-legend('Analytical','SU2',Location='northwest')
+%legend('Analytical','SU2',Location='northwest')
 
 RMSE = rmse(VM,(VM_SU2)')
 

@@ -22,11 +22,11 @@ ylabel('Normalised Radius')
 xlabel('Cylinder Rotation Speed')
 
 hold on
-plot(VTheta/(Ri*w),(r/Ri))
+plot(VTheta/(Ri*w),(r/Ri),LineWidth=1.5,Color='r')
 
-plot(BC1OUT.Velocity_0/(Ri*w),(abs(BC1OUT.Points_1)/Ri))
+%plot(BC1OUT.Velocity_0/(Ri*w),(abs(BC1OUT.Points_1)/Ri))
 
-legend('Analytical','SU2')
+%legend('Analytical','SU2')
 grid on
 
 RMSE = rmse(VTheta/(Ri*w),(BC1OUT.Velocity_0/(Ri*w))');

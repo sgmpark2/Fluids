@@ -29,11 +29,11 @@ hold on
 
 %plot(BC2Out.Velocity_2/(U_Zero),(BC2Out.Points_1/Ri))
 
-plot(VZ/U_Zero,r/Ri)
-plot(BC2Out.Velocity_2/U_Zero,BC2Out.Points_1/Ri)
+plot(VZ/U_Zero,r/Ri,LineWidth=1.5,Color='r')
+%plot(BC2Out.Velocity_2/U_Zero,BC2Out.Points_1/Ri)
 
 grid on
-legend('Analytical','SU2',Location='northwest')
+%legend('Analytical','SU2',Location='northwest')
 
 RMSE = rmse(VZ/U_Zero,(BC2Out.Velocity_2/U_Zero)')
 
